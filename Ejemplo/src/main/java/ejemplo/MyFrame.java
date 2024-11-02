@@ -12,24 +12,24 @@ import javax.swing.JFrame;
  */
 public class MyFrame extends JFrame {
     
-    //public GUI_panel panel;
+    GUI_panel panel1 = GUI_panel.getInstancia();
     
     public MyFrame(){
     
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("NIGGA");
+        this.setTitle("Carrera de caballos");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //this.setSize(500, 500);
         
-        GUI_panel panel = new GUI_panel();
-        this.add(panel);
+        
+        this.add(panel1);
+        
         
         this.setVisible(true);
         this.pack();
         
-        Caballo hilo = new Caballo(panel);
-        hilo.start();
+        
+    
         
         
         
@@ -37,3 +37,4 @@ public class MyFrame extends JFrame {
     }
     
 }
+

@@ -1,47 +1,62 @@
 package ejemplo;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
+import java.net.http.WebSocket.Listener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 public class GUI_panel extends JPanel {
-
+    
+    private Caballo caballo;
+    private Caballo caballo2;
+    private Caballo caballo3;
+    
+    private Semaforo semaforo;
+    
     final int WIDHT = 500;
     final int HEIGHT = 500;
-
-    Image image;
-    //Timer timer;
-    int xvelocity = 10;
-
-    int x = 1, y = 1;
-
+    
+    private static GUI_panel panel;
+    
+    
+    
+    public static GUI_panel getInstancia() {
+        if(panel == null){
+            panel = new GUI_panel();
+        }
+        return panel;
+    }
+    
     public GUI_panel() {
         this.setPreferredSize(new Dimension(WIDHT, HEIGHT));
-        image = new ImageIcon("C:/Users/asfak/Documents/NetBeansProjects/Ejemplo/src/main/java/ejemplo/caballo.png").getImage();
-
-        //timer = new Timer(100,this);
-        //timer.restart();
+        caballo = new Caballo(this,1,100);
+        caballo2 = new Caballo(this,1,220);
+        caballo3 = new Caballo(this,1,340);
+        
+        //caballo.start();
+        semaforo = new Semaforo();
+        //semaforo.start();
     }
-
+    
     public void paint(Graphics g) {
         super.paint(g);
-
-        Graphics graphic_2d = (Graphics2D) g;
-
-        graphic_2d.drawImage(image, x, y, null);
+        caballo.dibujarCaballo(g);
+        caballo2.dibujarCaballo(g);
+        caballo3.dibujarCaballo(g);
+        
+        semaforo.dibujarSemaforo(g);
     }
-
+    
     public void mover() {
-        JOptionPane.showMessageDialog(null, "FUNCIONANDO MOVER");
-        while (true) {
-            x = x + xvelocity;
+        //System.out.println("FUNCIONANDO MOVER");
+        for (int i = 0; i<40; i++) {
+            //System.out.println("FUNCIONANDO WHILE");
+            caballo.setXpos(caballo.getXpos() + caballo.getXvelocity());
             repaint();
 
             try {
@@ -50,11 +65,10 @@ public class GUI_panel extends JPanel {
                 e.printStackTrace();
             }
         }
-        //@Override
-        //public void actionPerformed(ActionEvent e) {
-        // x = x+xvelocity;
-        // repaint();
-        //}
-
+        
+    }
+    public void setColorRelleno(Color nuevoColor) {
+        semaforo.setColorRelleno(nuevoColor);
+        repaint();
     }
 }
