@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ejemplo;
 
 import java.awt.Graphics;
@@ -10,10 +6,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author asfak
- */
+
 public class Caballo extends Thread{
     
     public GUI_panel panel;
