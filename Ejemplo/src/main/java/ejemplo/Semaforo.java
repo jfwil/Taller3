@@ -34,7 +34,7 @@ public class Semaforo extends Thread {
         JOptionPane.showMessageDialog(null, "Hilo Semaforo Corriendo");
 
         try {
-            int numeroAleatorio = (int) (Math.random() * 2000 + 4000);
+            int numeroAleatorio = (int) (Math.random() * 100 + 1000);
             Thread.sleep(numeroAleatorio);
 
         } catch (InterruptedException ex) {

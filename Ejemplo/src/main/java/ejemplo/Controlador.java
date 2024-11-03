@@ -1,7 +1,9 @@
 package ejemplo;
 
-import ejemplo.Semaforo;
-
+/**
+ *
+ * @author asfak
+ */
 /**
  *
  * @author asfak

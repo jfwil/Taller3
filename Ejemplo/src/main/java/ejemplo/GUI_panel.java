@@ -4,14 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.ActionListener;
-import java.net.http.WebSocket.Listener;
+
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import ejemplo.Semaforo;
 
 public class GUI_panel extends JPanel {
 
@@ -28,8 +23,10 @@ public class GUI_panel extends JPanel {
 
     private static GUI_panel panel;
 
-    private JButton startButton;
-
+    private JButton iniciarButton;
+    private JButton interrumpirButton;
+    
+    
     public static GUI_panel getInstancia() {
         if (panel == null) {
             panel = new GUI_panel();
@@ -48,9 +45,11 @@ public class GUI_panel extends JPanel {
         semaforo = new Semaforo();
         controlador = new Controlador();
 
-        startButton = new JButton("Iniciar Movimiento");
-        startButton.addActionListener(e -> IniciarMovimiento());
-        add(startButton, BorderLayout.NORTH);
+        iniciarButton = new JButton("Iniciar Movimiento");
+        iniciarButton.addActionListener(e -> IniciarMovimiento());
+        add(iniciarButton, BorderLayout.NORTH);
+        
+        
     }
 
     public void paint(Graphics g) {
@@ -64,13 +63,21 @@ public class GUI_panel extends JPanel {
 
     public void mover() {
         //System.out.println("FUNCIONANDO MOVER");
+        
+        
         for (int i = 0; i < 40; i++) {
+            int numeroAleatorio2 = (int) (Math.random() * 3) + 1 ;
+            if(numeroAleatorio2 == 1){
+                caballo.setXpos(caballo.getXpos() + caballo.getXvelocity());
+            }else if (numeroAleatorio2 == 2){
+                caballo2.setXpos(caballo2.getXpos() + caballo2.getXvelocity());
+            }else if(numeroAleatorio2 == 3){
+                caballo3.setXpos(caballo3.getXpos() + caballo3.getXvelocity());
+            }
             //System.out.println("FUNCIONANDO WHILE");
-            caballo.setXpos(caballo.getXpos() + caballo.getXvelocity());
-            caballo2.setXpos(caballo2.getXpos() + caballo2.getXvelocity());
-            caballo3.setXpos(caballo3.getXpos() + caballo3.getXvelocity());
+            
             repaint();
-
+            
             try {
                 int numeroAleatorio = (int) (Math.random() * 100 + 2000);
                 Thread.sleep(numeroAleatorio);
@@ -78,7 +85,7 @@ public class GUI_panel extends JPanel {
                 e.printStackTrace();
             }
         }
-
+        
     }
 
     public void setColorRelleno(Color nuevoColor) {
