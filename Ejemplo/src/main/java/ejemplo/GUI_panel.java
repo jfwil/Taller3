@@ -25,7 +25,7 @@ public class GUI_panel extends JPanel {
 
     private JButton iniciarButton;
     private JButton interrumpirButton;
-    
+    private JButton salir;
     
     public static GUI_panel getInstancia() {
         if (panel == null) {
@@ -49,7 +49,13 @@ public class GUI_panel extends JPanel {
         iniciarButton.addActionListener(e -> IniciarMovimiento());
         add(iniciarButton, BorderLayout.NORTH);
         
+        interrumpirButton = new JButton("Interrumpir");
+        interrumpirButton.addActionListener(e -> Interrumpir());
+        add(interrumpirButton, BorderLayout.SOUTH);
         
+        salir = new JButton("Salir");
+        salir.addActionListener(e -> Salir());
+        add(salir, BorderLayout.WEST);
     }
 
     public void paint(Graphics g) {
@@ -93,7 +99,7 @@ public class GUI_panel extends JPanel {
         repaint();
     }
 
-    public void IniciarMovimiento() {
+    private void IniciarMovimiento() {
         semaforo.start();  
 
         new Thread(() -> {
@@ -110,4 +116,14 @@ public class GUI_panel extends JPanel {
             caballo3.start();
         }).start();
     }
+
+    private void Interrumpir() {
+        
+    }
+    private void Salir(){
+    
+        System.exit(0);
+    
+    }
+    
 }
